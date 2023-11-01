@@ -1,6 +1,10 @@
 
+//movies
 
-
-export 'shared/custom_appbar.dart';
 export 'movies/movies_slideshow.dart';
+export 'movies/movie_horizontal_listview.dart';
+
+//shared
+
 export 'shared/custom_bottom_navigation_bar.dart';
+export 'shared/custom_appbar.dart';
