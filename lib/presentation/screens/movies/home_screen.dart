@@ -39,17 +39,51 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
-    return Column(
-      children: [
-        const CustomAppbar(),
-        MoviesSlideshow(movies: slideShowMovies),
-        MovieHorizontalListview(
-          title: 'Lastest Movies',
-          subTitle: 'Monday 20',
-          movies: nowPlayingMovies,
-          loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+    return CustomScrollView(slivers: [
+      const SliverAppBar(
+        floating: true,
+        flexibleSpace: FlexibleSpaceBar(
+          title: CustomAppbar(),
+          centerTitle: true,
         ),
-      ],
-    );
+      ),
+      SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return Column(
+            children: [
+              
+              MoviesSlideshow(movies: slideShowMovies),
+              MovieHorizontalListview(
+                title: 'Lastest Movies',
+                subTitle: 'Monday 20',
+                movies: nowPlayingMovies,
+                loadNextPage: () =>
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+              ),
+              MovieHorizontalListview(
+                title: 'Coming soon',
+                subTitle: 'This month',
+                movies: nowPlayingMovies,
+                loadNextPage: () =>
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+              ),
+              MovieHorizontalListview(
+                title: 'Popular',
+                movies: nowPlayingMovies,
+                loadNextPage: () =>
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+              ),
+              MovieHorizontalListview(
+                title: 'Top rating',
+                subTitle: 'All time',
+                movies: nowPlayingMovies,
+                loadNextPage: () =>
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+              ),
+            ],
+          );
+        }, childCount: 1),
+      )
+    ]);
   }
 }
