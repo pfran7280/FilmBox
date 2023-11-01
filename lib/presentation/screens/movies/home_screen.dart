@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:filmbox/presentation/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
 
@@ -36,7 +35,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    //final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
 
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
@@ -47,8 +46,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         MovieHorizontalListview(
           title: 'Lastest Movies',
           subTitle: 'Monday 20',
-          movies: slideShowMovies,
-        )
+          movies: nowPlayingMovies,
+          loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+        ),
       ],
     );
   }
