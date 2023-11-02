@@ -1,4 +1,4 @@
-import 'package:filmbox/presentation/screens/providers/providers.dart';
+import 'package:filmbox/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:filmbox/presentation/widgets/widgets.dart';
