@@ -1,10 +1,10 @@
-import 'package:filmbox/presentation/providers/movies/movies_repository_provider.dart';
-import 'package:filmbox/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/entities/movie.dart';
+import 'package:filmbox/presentation/providers/providers.dart';
 import '../../delegates/search_movie_delegate.dart';
 
 class CustomAppbar extends ConsumerWidget {
@@ -40,7 +40,7 @@ class CustomAppbar extends ConsumerWidget {
                     final searchedMovies = ref.read(searchMoviesProvider);
                     final searchQuery = ref.read(searchQueryProvider);
 
-                    final movie = showSearch<Movie?>(
+                    showSearch<Movie?>(
                         query: searchQuery,
                         context: context,
                         delegate: SearchMovieDelegate(
